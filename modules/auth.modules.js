@@ -19,7 +19,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
+    fullname: {
+      type: String,
+    },
+    contactNumber: {
+      type: String,
+    },
+    age: {
+      type: String,
+    },
+    fullAddreess: {
+      type: String,
+    },
     avatar: {
       type: String,
     },

@@ -4,7 +4,7 @@ import {
   forgotPassword,
   login,
   signUp,
-} from "../controllers/user.controllers.js";
+} from "../controllers/auth.controllers.js";
 
 // Route to handle user sign up
 router.post("/signUp", signUp);
