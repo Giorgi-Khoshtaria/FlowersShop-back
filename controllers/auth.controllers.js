@@ -92,6 +92,7 @@ export const login = async (req, res, next) => {
         username: user.username,
         email: user.email,
         password: user.password,
+        role: user.role,
         // Add any other user fields you want to include
       },
       message: "Login successful!",
