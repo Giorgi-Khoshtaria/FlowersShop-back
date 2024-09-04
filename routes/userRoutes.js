@@ -1,14 +1,13 @@
 import express from "express";
-const router = express.Router();
-import {
-  forgotPassword,
-  login,
-  signUp,
-} from "../controllers/auth.controllers.js";
+import { getUserProfileData } from "../controllers/user.controlers.js";
+import { verifyToken, refreshToken } from "../utils/verifytoken.js";
 
-// Route to handle user sign up
-router.post("/signUp", signUp);
-router.post("/login", login);
-router.post("/forgot-password", forgotPassword);
+const router = express.Router();
+
+// Existing route
+router.get("/getUserProfile/:userId", verifyToken, getUserProfileData);
+
+// New route for refreshing tokens
+router.post("/refresh-token", refreshToken);
 
 export default router;

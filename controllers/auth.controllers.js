@@ -6,10 +6,9 @@ import jwt from "jsonwebtoken";
 import User from "../modules/auth.modules.js";
 dotenv.config();
 
-// eslint-disable-next-line no-undef
 const JWT_SECRET = process.env.REACT_APP_TOKEN_URL;
 
-console.log("jwt", JWT_SECRET);
+// console.log("jwt", JWT_SECRET);
 
 export const signUp = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -37,8 +36,8 @@ export const signUp = async (req, res, next) => {
     // Generate a JWT token
     const token = jwt.sign(
       { id: newUser._id, username: newUser.username },
-      process.env.REACT_APP_TOKEN_URL, // Use your environment variable for the secret
-      { expiresIn: "1h" }
+      JWT_SECRET, // Use your environment variable for the secret
+      { expiresIn: "24h" }
     );
 
     // Respond with the token and user data (excluding password)
@@ -77,10 +76,10 @@ export const login = async (req, res, next) => {
     // Generate a JWT token
     const token = jwt.sign(
       { id: user._id, username: user.username },
-      // eslint-disable-next-line no-undef
-      process.env.REACT_APP_TOKEN_URL,
+
+      JWT_SECRET,
       {
-        expiresIn: "1h",
+        expiresIn: "24h",
       }
     );
 

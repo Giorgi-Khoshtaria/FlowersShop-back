@@ -3,12 +3,13 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import authRouter from "./routes/userRoutes.js";
+import authRouter from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
 dotenv.config();
 // Connect to MongoDB
 const mongourl = process.env.REACT_APP_MONGO_URL;
-console.log("MongoUrl:", mongourl);
+// console.log("MongoUrl:", mongourl);
 mongoose
   .connect(mongourl)
   .then(() => {
@@ -33,3 +34,4 @@ app.listen(3005, () => {
 });
 
 app.use("/api/user", authRouter);
+app.use("/api/user", userRouter);
