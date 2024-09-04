@@ -1,13 +1,15 @@
 import express from "express";
-import { getUserProfileData } from "../controllers/user.controlers.js";
-import { verifyToken, refreshToken } from "../utils/verifytoken.js";
+import {
+  getUserProfileData,
+  updateUser,
+} from "../controllers/user.controlers.js";
+import { verifyToken } from "../utils/verifytoken.js";
 
 const router = express.Router();
 
 // Existing route
 router.get("/getUserProfile/:userId", verifyToken, getUserProfileData);
-
-// New route for refreshing tokens
-router.post("/refresh-token", refreshToken);
+// Update the route to include 'api/user' in the path
+router.post("/updateProfile/:userId", verifyToken, updateUser);
 
 export default router;
