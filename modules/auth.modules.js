@@ -33,10 +33,10 @@ const userSchema = new mongoose.Schema(
     age: {
       type: String,
     },
-    fullAddreess: {
+    fullAddress: {
       type: String,
     },
-    avatar: {
+    profilePicture: {
       type: String,
     },
   },

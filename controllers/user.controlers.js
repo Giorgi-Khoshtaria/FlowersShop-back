@@ -43,7 +43,7 @@ export const updateUser = async (req, res) => {
       fullName,
       contactNumber,
       age,
-      fullAddreess,
+      fullAddress,
       profilePicture,
     } = req.body;
 
@@ -56,7 +56,7 @@ export const updateUser = async (req, res) => {
           fullName,
           contactNumber,
           age,
-          fullAddreess,
+          fullAddress,
           profilePicture,
         },
       },
