@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import blogRoutes from "./routes/blogroutes.js";
 
 dotenv.config();
 // Connect to MongoDB
@@ -38,3 +39,4 @@ app.listen(3005, () => {
 
 app.use("/api/user", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/blogs", blogRoutes);
