@@ -4,7 +4,14 @@ import Blog from "../modules/blog.modules.js";
 // Controller function to add a new blog
 export const addBlog = async (req, res) => {
   try {
-    const { blogName, blogDescription, blogImage, blogUserId } = req.body;
+    const {
+      blogName,
+      blogDescription,
+      blogImage,
+      blogUserId,
+      blogUserImage,
+      blogUserName,
+    } = req.body;
 
     console.log("Received data:", req.body); // Debugging line
 
@@ -17,6 +24,8 @@ export const addBlog = async (req, res) => {
       blogDescription,
       blogImage,
       blogUserId,
+      blogUserImage,
+      blogUserName,
     });
 
     await newBlog.save();
@@ -26,6 +35,24 @@ export const addBlog = async (req, res) => {
       .json({ message: "Blog created successfully", blog: newBlog });
   } catch (error) {
     console.error("Error creating blog:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
+export const getBlogs = async (req, res) => {
+  try {
+    // Fetch all blogs from the database
+    const blogs = await Blog.find();
+
+    // If no blogs are found, return an empty array
+    if (!blogs) {
+      return res.status(404).json({ message: "No blogs found" });
+    }
+
+    // Return the blogs in the response
+    res.status(200).json(blogs);
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
     res.status(500).json({ error: "Server error" });
   }
 };

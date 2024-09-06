@@ -19,6 +19,11 @@ const BlogSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  blogUserImage: {
+    type: String,
+    ref: "User",
+  },
+  blogUserName: { type: String, ref: "User" },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -5,11 +5,10 @@ import {
   login,
   signUp,
 } from "../controllers/auth.controllers.js";
-import { verifyToken } from "../utils/verifytoken.js";
 
 // Route to handle user sign up
-router.post("/signUp", verifyToken, signUp);
-router.post("/login", verifyToken, login);
-router.post("/forgot-password", verifyToken, forgotPassword);
+router.post("/signUp", signUp);
+router.post("/login", login);
+router.post("/forgot-password", forgotPassword);
 
 export default router;
