@@ -24,6 +24,8 @@ const BlogSchema = new mongoose.Schema({
     ref: "User",
   },
   blogUserName: { type: String, ref: "User" },
+  likes: { type: Number, default: 0 },
+  views: { type: Number, default: 0 },
   createdAt: {
     type: Date,
     default: Date.now,

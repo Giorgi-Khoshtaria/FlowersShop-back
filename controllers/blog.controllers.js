@@ -56,3 +56,25 @@ export const getBlogs = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+export const getBlogById = async (req, res) => {
+  try {
+    const { blogid } = req.params;
+
+    // Find the blog by ID
+    const blog = await Blog.findById(blogid);
+
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    // Increment views
+    blog.views += 1;
+    await blog.save();
+
+    // Send blog details
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
