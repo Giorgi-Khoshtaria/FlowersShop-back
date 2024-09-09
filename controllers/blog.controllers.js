@@ -122,3 +122,21 @@ export const updateBlog = async (req, res) => {
     res.status(500).json({ message: "Error updating blog", error });
   }
 };
+
+export const delateBlog = async (req, res) => {
+  try {
+    const blogId = req.params.blogId;
+    console.log(blogId);
+
+    // Find and delete the blog by ID
+    const deletedBlog = await Blog.findByIdAndDelete(blogId);
+
+    if (!deletedBlog) {
+      return res.status(404).json({ msg: "Blog not found" });
+    }
+
+    res.status(200).json({ msg: "Blog deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating blog", error });
+  }
+};

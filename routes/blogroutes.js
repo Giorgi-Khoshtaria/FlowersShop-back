@@ -2,6 +2,7 @@
 import express from "express";
 import {
   addBlog,
+  delateBlog,
   getBlogById,
   getBlogByUserId,
   getBlogs,
@@ -17,5 +18,6 @@ router.get("/getBlogs", verifyToken, getBlogs);
 router.get("/getBlog/:blogid", verifyToken, getBlogById);
 router.get("/getBlogByUserId/:blogUserId", verifyToken, getBlogByUserId);
 router.put("/updateBlog/:blogId", verifyToken, updateBlog);
+router.delete("/deleteBlog/:blogId", verifyToken, delateBlog);
 
 export default router;
