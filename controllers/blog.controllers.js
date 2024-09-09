@@ -78,3 +78,21 @@ export const getBlogById = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+export const getBlogByUserId = async (req, res) => {
+  try {
+    const { blogUserId } = req.params; // Get the user ID from params
+    console.log(blogUserId, ":userId");
+
+    // Find all blogs where blogUserId matches the userId from the params
+    const blogByUser = await Blog.find({ blogUserId }); // Correct query
+
+    if (!blogByUser || blogByUser.length === 0) {
+      return res.status(404).json({ message: "No blogs found for this user" });
+    }
+
+    res.status(200).json(blogByUser); // Return the list of blogs
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};

@@ -16,13 +16,6 @@ export const getUserProfileData = async (req, res) => {
         .json({ status: "error", message: "User profile not found" });
     }
 
-    // Optionally generate a token here if needed
-    // const token = jwt.sign(
-    //   { id: userProfile._id, username: userProfile.username },
-    //   JWT_SECRET,
-    //   { expiresIn: "1h" }
-    // );
-
     res.json(userProfile);
   } catch (error) {
     console.error("Error fetching profile data:", error);
@@ -71,5 +64,22 @@ export const updateUser = async (req, res) => {
   } catch (error) {
     console.error("Error updating user:", error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+export const getUserProfileDetailsData = async (req, res) => {
+  try {
+    const blogUserId = req.params.blogUserId;
+
+    const userProfile = await User.findById(blogUserId, "-password");
+    if (!userProfile) {
+      return res
+        .status(404)
+        .json({ status: "error", message: "User profile not found" });
+    }
+
+    res.json(userProfile);
+  } catch (error) {
+    console.error("Error fetching profile data:", error);
+    res.status(500).json({ status: "error", message: "Internal server error" });
   }
 };
