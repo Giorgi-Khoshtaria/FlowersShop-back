@@ -5,6 +5,7 @@ import {
   getBlogById,
   getBlogByUserId,
   getBlogs,
+  updateBlog,
 } from "../controllers/Blog.controllers.js";
 import { verifyToken } from "../utils/verifytoken.js";
 
@@ -15,5 +16,6 @@ router.post("/addBlog", verifyToken, addBlog);
 router.get("/getBlogs", verifyToken, getBlogs);
 router.get("/getBlog/:blogid", verifyToken, getBlogById);
 router.get("/getBlogByUserId/:blogUserId", verifyToken, getBlogByUserId);
+router.put("/updateBlog/:blogId", verifyToken, updateBlog);
 
 export default router;

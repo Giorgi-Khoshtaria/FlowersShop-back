@@ -96,3 +96,29 @@ export const getBlogByUserId = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+// Update blog by ID
+export const updateBlog = async (req, res) => {
+  try {
+    const { blogId } = req.params;
+    const { blogName, blogDescription, blogImage } = req.body; // Add other fields as needed
+
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      blogId,
+      {
+        blogName,
+        blogDescription,
+        blogImage, // Assuming the image is in base64 format or URL
+      },
+      { new: true }
+    );
+
+    if (!updatedBlog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    res.status(200).json(updatedBlog);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating blog", error });
+  }
+};
