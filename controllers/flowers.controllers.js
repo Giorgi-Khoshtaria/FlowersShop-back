@@ -29,3 +29,16 @@ export const addFlower = async (req, res) => {
     return res.status(500).json({ message: "Failed to add flower", error });
   }
 };
+
+export const getFlowers = async (req, res) => {
+  try {
+    const flowers = await Flower.find();
+    if (!flowers) {
+      return res.status(404).json({ message: "No blogs found" });
+    }
+    res.status(200).json(flowers);
+  } catch (error) {
+    console.error("Error fetching flowers:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};

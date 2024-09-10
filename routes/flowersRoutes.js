@@ -1,7 +1,9 @@
 import express from "express";
-import { addFlower } from "../controllers/flowers.controllers.js";
+import { addFlower, getFlowers } from "../controllers/flowers.controllers.js";
 const router = express.Router();
+import { verifyToken } from "../utils/verifytoken.js";
 
-router.post("/addFlowers", addFlower);
+router.post("/addFlowers", verifyToken, addFlower);
+router.get("/getFlowers", verifyToken, getFlowers);
 
 export default router;
