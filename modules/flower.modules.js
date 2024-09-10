@@ -1,17 +1,25 @@
 import mongoose from "mongoose";
 
 const FlowersSchema = new mongoose.Schema({
-  flowersNmae: {
+  flowersPhoto: {
+    type: String, // Store base64 string
+    required: true,
+  },
+  flowersName: {
     type: String,
-    require: true,
+    required: true,
   },
   flowersDescription: {
     type: String,
-    require: true,
+    required: true,
   },
   flowersPrice: {
     type: String,
-    require: true,
+    required: true,
+  },
+  flowersRating: {
+    type: String,
+    required: true,
   },
 });
 

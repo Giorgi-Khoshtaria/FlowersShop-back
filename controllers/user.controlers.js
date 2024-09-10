@@ -22,6 +22,7 @@ export const getUserProfileData = async (req, res) => {
     res.status(500).json({ status: "error", message: "Internal server error" });
   }
 };
+
 export const updateUser = async (req, res) => {
   try {
     if (req.user.id !== req.params.userId) {
