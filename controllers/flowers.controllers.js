@@ -42,3 +42,21 @@ export const getFlowers = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+export const getFlowersById = async (req, res) => {
+  try {
+    const { flowersId } = req.params;
+
+    // Find the blog by ID
+    const flowers = await Flower.findById(flowersId);
+
+    if (!flowers) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    await flowers.save();
+    // Send blog details
+    res.status(200).json(flowers);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
