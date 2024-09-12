@@ -21,6 +21,12 @@ const FlowersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
 export default mongoose.model("Flower", FlowersSchema);
