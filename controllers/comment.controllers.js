@@ -37,3 +37,22 @@ export const addComment = async (req, res) => {
     return res.status(500).json({ error: "Internal server error." });
   }
 };
+
+export const getCommentsByFlowersId = async (req, res) => {
+  try {
+    const { flowersId } = req.params;
+
+    // Find all comments where the flowersId matches
+    const comments = await Comment.find({ flowersId });
+
+    if (!comments || comments.length === 0) {
+      return res
+        .status(201)
+        .json({ message: "No comments found for this flower" });
+    }
+
+    res.status(200).json(comments);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
