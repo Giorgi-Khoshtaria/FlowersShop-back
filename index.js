@@ -8,6 +8,7 @@ import userRouter from "./routes/userRoutes.js";
 import blogRoutes from "./routes/blogroutes.js";
 import flowersRoutes from "./routes/flowersRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import checkoutRoutes from "./routes/checkoutRoutes.js";
 
 dotenv.config();
 // Connect to MongoDB
@@ -44,3 +45,4 @@ app.use("/api/user", userRouter);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/flowers", flowersRoutes);
 app.use("/api/reviews", commentRoutes);
+app.use("/api/checkout", checkoutRoutes);
