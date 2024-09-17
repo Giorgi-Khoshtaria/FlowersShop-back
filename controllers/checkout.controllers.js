@@ -29,3 +29,17 @@ export const addCheckout = async (req, res) => {
     });
   }
 };
+
+export const getOrdersByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const orders = await Checkout.find({ userId });
+    if (!orders || orders.length === 0) {
+      return res.status(201).json({ message: "No Orders Found" });
+    }
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
