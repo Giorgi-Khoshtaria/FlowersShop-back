@@ -43,3 +43,17 @@ export const getOrdersByUserId = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
+export const delateOrder = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const order = await Checkout.findByIdAndDelete(orderId);
+    if (!order) {
+      return res.status(201).json({ message: "No Orders Found" });
+    }
+
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
