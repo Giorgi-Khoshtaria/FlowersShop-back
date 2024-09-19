@@ -5,6 +5,32 @@ import User from "../modules/auth.modules.js";
 dotenv.config();
 // const JWT_SECRET = process.env.REACT_APP_TOKEN_URL;
 
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    // Return the users as a response
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const delateUser = async (req, res) => {
+  try {
+    const { userId } = req.params; // Extract the userId
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
 export const getUserProfileData = async (req, res) => {
   try {
     const userId = req.params.userId;

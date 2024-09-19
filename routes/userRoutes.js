@@ -1,5 +1,7 @@
 import express from "express";
 import {
+  delateUser,
+  getAllUsers,
   getUserProfileData,
   getUserProfileDetailsData,
   updateUser,
@@ -17,5 +19,6 @@ router.get(
   verifyToken,
   getUserProfileDetailsData
 );
-
+router.get("/getAllUser", verifyToken, getAllUsers);
+router.delete("/delateUser/:userId", verifyToken, delateUser);
 export default router;
