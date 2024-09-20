@@ -5,6 +5,7 @@ import {
   getUserProfileData,
   getUserProfileDetailsData,
   updateUser,
+  updateUserForAdmin,
 } from "../controllers/user.controlers.js";
 import { verifyToken } from "../utils/verifytoken.js";
 
@@ -21,4 +22,5 @@ router.get(
 );
 router.get("/getAllUser", verifyToken, getAllUsers);
 router.delete("/delateUser/:userId", verifyToken, delateUser);
+router.put("/updateUser/:id", verifyToken, updateUserForAdmin);
 export default router;
