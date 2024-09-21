@@ -77,3 +77,19 @@ export const getComments = async (req, res) => {
     res.status(500).json({ message: "Server error", error }); // Catch and handle any errors
   }
 };
+
+export const deleteComment = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedComment = await Comment.findByIdAndDelete(id);
+
+    if (!deletedComment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    res.status(200).json({ message: "Comment deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting comment", error });
+  }
+};
