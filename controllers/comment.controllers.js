@@ -2,10 +2,18 @@ import Flower from "../modules/flower.modules.js";
 import Comment from "../modules/comment.modules.js";
 
 export const addComment = async (req, res) => {
-  const { userId, userImage, userName, flowersId, comment, rating } = req.body;
+  const {
+    userId,
+    userImage,
+    userName,
+    flowersId,
+    comment,
+    rating,
+    flowersName,
+  } = req.body;
 
   try {
-    if (!userId || !flowersId || !comment || !rating) {
+    if (!userId || !flowersId || !comment || !rating || !flowersName) {
       return res.status(400).json({ error: "All fields are required." });
     }
 
@@ -20,6 +28,7 @@ export const addComment = async (req, res) => {
       userImage,
       userName,
       flowersId,
+      flowersName,
       comment,
       rating,
     });
@@ -54,5 +63,17 @@ export const getCommentsByFlowersId = async (req, res) => {
     res.status(200).json(comments);
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getComments = async (req, res) => {
+  try {
+    const comments = await Comment.find();
+    if (!comments) {
+      return res.status(404).json({ message: "No Comments found" });
+    }
+    res.status(200).json(comments); // Send the fetched comments with a 200 status
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error }); // Catch and handle any errors
   }
 };

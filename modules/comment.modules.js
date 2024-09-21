@@ -19,6 +19,7 @@ const CommentSchema = new mongoose.Schema({
     ref: "Flower",
     required: true,
   },
+  flowersName: { type: String, required: true },
   comment: {
     type: String,
     required: true,
