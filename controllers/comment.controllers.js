@@ -50,7 +50,6 @@ export const addComment = async (req, res) => {
 export const getCommentsByFlowersId = async (req, res) => {
   try {
     const { flowersId } = req.params;
-
     // Find all comments where the flowersId matches
     const comments = await Comment.find({ flowersId });
 
@@ -91,5 +90,46 @@ export const deleteComment = async (req, res) => {
     res.status(200).json({ message: "Comment deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Error deleting comment", error });
+  }
+};
+
+export const getCommentById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const comment = await Comment.findById(id);
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+    res.status(200).json(comment);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const updateComment = async (req, res) => {
+  const { id } = req.params;
+  const { comment, rating } = req.body;
+
+  try {
+    // Check if the comment exists
+    const existingComment = await Comment.findById(id);
+    if (!existingComment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    // Update the comment fields
+    existingComment.comment = comment || existingComment.comment;
+    existingComment.rating = rating || existingComment.rating;
+
+    // Save the updated comment
+    await existingComment.save();
+
+    res
+      .status(200)
+      .json({ message: "Comment updated successfully", existingComment });
+  } catch (error) {
+    console.error("Error updating comment:", error);
+    res.status(500).json({ message: "Internal server error", error });
   }
 };
