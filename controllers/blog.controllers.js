@@ -87,9 +87,9 @@ export const getBlogByUserId = async (req, res) => {
     // Find all blogs where blogUserId matches the userId from the params
     const blogByUser = await Blog.find({ blogUserId }); // Correct query
 
-    if (!blogByUser || blogByUser.length === 0) {
-      return res.status(404).json({ message: "No blogs found for this user" });
-    }
+    // if (!blogByUser || blogByUser.length === 0) {
+    //   return res.status(404).json({ message: "No blogs found for this user" });
+    // }
 
     res.status(200).json(blogByUser); // Return the list of blogs
   } catch (error) {

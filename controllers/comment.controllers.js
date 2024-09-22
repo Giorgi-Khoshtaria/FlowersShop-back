@@ -93,7 +93,43 @@ export const deleteComment = async (req, res) => {
   }
 };
 
+export const deleteCommentsByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Delete all comments with the specified userId
+    const result = await Comment.deleteMany({ userId });
+    console.log(userId, "delate comments user id");
+    // if (result.deletedCount === 0) {
+    //   return res
+    //     .status(404)
+    //     .json({ message: "No comments found for this user" });
+    // }
+
+    res.status(200).json({
+      message: "All comments by this user deleted successfully",
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting comments", error });
+  }
+};
+
 export const getCommentById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const comment = await Comment.findById(id);
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+    res.status(200).json(comment);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export const getCommentByUserId = async (req, res) => {
   const { id } = req.params;
 
   try {

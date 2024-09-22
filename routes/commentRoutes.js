@@ -3,7 +3,9 @@ import { verifyToken } from "../utils/verifytoken.js";
 import {
   addComment,
   deleteComment,
+  deleteCommentsByUserId,
   getCommentById,
+  getCommentByUserId,
   getComments,
   getCommentsByFlowersId,
   updateComment,
@@ -18,7 +20,12 @@ router.get(
 );
 router.get("/getCommets", verifyToken, getComments);
 router.delete("/deleteComment/:id", verifyToken, deleteComment);
+router.delete(
+  "/deleteCommentByUserId/:userId",
+  verifyToken,
+  deleteCommentsByUserId
+);
 router.get("/getCommentById/:id", verifyToken, getCommentById);
 router.put("/updateComment/:id", verifyToken, updateComment);
-
+router.get("/getCommentByUserId/:id", verifyToken, getCommentByUserId);
 export default router;
