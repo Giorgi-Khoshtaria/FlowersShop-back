@@ -76,3 +76,33 @@ export const deleteflowers = async (req, res) => {
     res.status(500).json({ message: "Error deleting flower", error });
   }
 };
+
+// Update Flower
+export const updateFlower = async (req, res) => {
+  const {
+    flowersPhoto,
+    flowersName,
+    flowersDescription,
+    flowersPrice,
+    flowersRating,
+  } = req.body;
+
+  try {
+    const updatedFlower = await Flower.findByIdAndUpdate(
+      req.params.id,
+      {
+        flowersPhoto,
+        flowersName,
+        flowersDescription,
+        flowersPrice,
+        flowersRating,
+      },
+      { new: true } // Return updated document
+    );
+    if (!updatedFlower)
+      return res.status(404).json({ message: "Flower not found." });
+    res.json(updatedFlower);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating flower.", error });
+  }
+};
