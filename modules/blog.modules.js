@@ -10,6 +10,7 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  blogPhrase: { type: String, required: true },
   blogImage: {
     type: String, // store base64 string
     required: true,

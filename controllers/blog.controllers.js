@@ -7,6 +7,7 @@ export const addBlog = async (req, res) => {
     const {
       blogName,
       blogDescription,
+      blogPhrase,
       blogImage,
       blogUserId,
       blogUserImage,
@@ -15,13 +16,20 @@ export const addBlog = async (req, res) => {
 
     console.log("Received data:", req.body); // Debugging line
 
-    if (!blogName || !blogDescription || !blogImage || !blogUserId) {
+    if (
+      !blogName ||
+      !blogDescription ||
+      !blogImage ||
+      !blogUserId ||
+      !blogPhrase
+    ) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     const newBlog = new Blog({
       blogName,
       blogDescription,
+      blogPhrase,
       blogImage,
       blogUserId,
       blogUserImage,
