@@ -14,9 +14,9 @@ const router = express.Router();
 
 // POST route for creating a blog
 router.post("/addBlog", verifyToken, addBlog);
-router.get("/getBlogs", verifyToken, getBlogs);
-router.get("/getBlog/:blogid", verifyToken, getBlogById);
-router.get("/getBlogByUserId/:blogUserId", verifyToken, getBlogByUserId);
+router.get("/getBlogs", getBlogs);
+router.get("/getBlog/:blogid", getBlogById);
+router.get("/getBlogByUserId/:blogUserId", getBlogByUserId);
 router.put("/updateBlog/:blogId", verifyToken, updateBlog);
 router.delete("/deleteBlog/:blogId", verifyToken, delateBlog);
 

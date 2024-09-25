@@ -10,8 +10,9 @@ const router = express.Router();
 import { verifyToken } from "../utils/verifytoken.js";
 
 router.post("/addFlowers", verifyToken, addFlower);
-router.get("/getFlowers", verifyToken, getFlowers);
-router.get("/getFlowersById/:flowersId", verifyToken, getFlowersById);
+router.get("/getFlowers", getFlowers);
+// router.get("/getFlowersForBestSeller", getFlowersForBestSeller);
+router.get("/getFlowersById/:flowersId", getFlowersById);
 router.delete("/deleteFlowers/:id", verifyToken, deleteflowers);
 router.put("/updateFlower/:id", verifyToken, updateFlower);
 

@@ -17,7 +17,7 @@ router.get("/getUserProfile/:userId", verifyToken, getUserProfileData);
 router.post("/updateProfile/:userId", verifyToken, updateUser);
 router.get(
   "/getUserDetails/:blogUserId",
-  verifyToken,
+
   getUserProfileDetailsData
 );
 router.get("/getAllUser", verifyToken, getAllUsers);

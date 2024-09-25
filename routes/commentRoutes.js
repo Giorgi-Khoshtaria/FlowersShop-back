@@ -13,11 +13,7 @@ import {
 const router = express.Router();
 
 router.post("/addComment", verifyToken, addComment);
-router.get(
-  "/getCommentsByFlowerId/:flowersId",
-  verifyToken,
-  getCommentsByFlowersId
-);
+router.get("/getCommentsByFlowerId/:flowersId", getCommentsByFlowersId);
 router.get("/getCommets", verifyToken, getComments);
 router.delete("/deleteComment/:id", verifyToken, deleteComment);
 router.delete(
@@ -25,7 +21,7 @@ router.delete(
   verifyToken,
   deleteCommentsByUserId
 );
-router.get("/getCommentById/:id", verifyToken, getCommentById);
+router.get("/getCommentById/:id", getCommentById);
 router.put("/updateComment/:id", verifyToken, updateComment);
 router.get("/getCommentByUserId/:id", verifyToken, getCommentByUserId);
 export default router;
