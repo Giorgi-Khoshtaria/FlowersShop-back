@@ -5,7 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-import blogRoutes from "./routes/blogRoutes.js";
+import blogRoute from "./routes/blogRoute.js";
 import flowersRoutes from "./routes/flowersRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
@@ -31,7 +31,6 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   cors({
     origin: true,
-
     credentials: true,
   })
 );
@@ -43,7 +42,7 @@ app.listen(3005, () => {
 
 app.use("/api/user", authRouter);
 app.use("/api/user", userRouter);
-app.use("/api/blogs", blogRoutes);
+app.use("/api/blogs", blogRoute);
 app.use("/api/flowers", flowersRoutes);
 app.use("/api/reviews", commentRoutes);
 app.use("/api/checkout", checkoutRoutes);
