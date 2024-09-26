@@ -7,7 +7,7 @@ import {
   getBlogByUserId,
   getBlogs,
   updateBlog,
-} from "../controllers/Blog.controllers.js";
+} from "../controllers/blog.controller.js";
 import { verifyToken } from "../utils/verifytoken.js";
 
 const router = express.Router();
