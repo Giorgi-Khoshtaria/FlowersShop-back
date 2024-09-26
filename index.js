@@ -5,7 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-import blogRoutes from "./routes/blogroutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 import flowersRoutes from "./routes/flowersRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import checkoutRoutes from "./routes/checkoutRoutes.js";
