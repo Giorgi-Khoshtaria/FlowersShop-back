@@ -37,7 +37,7 @@ export const signUp = async (req, res, next) => {
     const token = jwt.sign(
       { id: newUser._id, username: newUser.username },
       JWT_SECRET, // Use your environment variable for the secret
-      { expiresIn: "24h" }
+      { expiresIn: "7d" } // Set expiration to 1 week
     );
 
     // Respond with the token and user data (excluding password)
@@ -78,9 +78,7 @@ export const login = async (req, res, next) => {
       { id: user._id, username: user.username },
 
       JWT_SECRET,
-      {
-        expiresIn: "24h",
-      }
+      { expiresIn: "7d" }
     );
 
     // Include user details in the response, excluding sensitive information like the password

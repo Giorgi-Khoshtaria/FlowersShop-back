@@ -12,7 +12,7 @@ import { verifyToken } from "../utils/verifytoken.js";
 const router = express.Router();
 
 // Existing route
-router.get("/getUserProfile/:userId", verifyToken, getUserProfileData);
+router.get("/getUserProfile/:userId", getUserProfileData);
 // Update the route to include 'api/user' in the path
 router.post("/updateProfile/:userId", verifyToken, updateUser);
 router.get(
