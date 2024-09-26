@@ -1,0 +1,11 @@
+{
+  "builds": [
+    {
+      "src": "./package.json",
+      "use": "@railway/nodejs"
+    }
+  ],
+  "deploy": {
+    "startCommand": "nodemon index.js"
+  }
+}
